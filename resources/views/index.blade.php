@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite(['resources/js/app.js', 'resources/css/app.scss'])
-    <title>RSS</title>
-</head>
+@section('content')
+    <div class="flex space-x-4 items-start">
+        <!-- Categories -->
+        <div class="w-1/3 bg-gray-300 p-4 rounded-xl shadow-md">
+            @include('components.categories')
+        </div>
 
-<body>
-    <button type="button" class="btn btn-primary">&#128512; Primary</button>
-
-</body>
-
-</html>
+        <!-- Posts -->
+        <div class="w-2/3 flex flex-col space-y-4">
+            @each('components.post', $posts, 'post')
+        </div>
+    </div>
+@endsection

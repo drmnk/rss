@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [PostsController::class, 'index']);
+
+Route::get('/posts/{category}', [PostsController::class, 'indexCategory'])
+    ->name('posts.category');
+
+Route::get('/posts/{category}/{id}-{slug}', [PostsController::class, 'show'])
+    ->name('posts.category.post');
