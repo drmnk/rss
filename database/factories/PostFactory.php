@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Category;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
@@ -21,12 +21,13 @@ class PostFactory extends Factory
         $categories = Category::all();
         $title = fake()->sentence();
         $body = fake()->text(1000);
+
         return [
             'title' => $title,
             'slug' => Str::slug($title),
-            'before_cut' => Str::substr($body, 0, 50),
+            'before_cut' => Str::substr($body, 0, 100),
             'body' => $body,
-            'category_id' => $categories->random()->id
+            'category_id' => $categories->random()->id,
         ];
     }
 }
