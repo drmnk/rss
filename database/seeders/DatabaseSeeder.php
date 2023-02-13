@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'John Doe',
             'email' => 'manager@rss.com',
-            'password' => Hash::make(env('MANAGER_PASSWORD'))
+            'password' => Hash::make(env('MANAGER_PASSWORD')),
         ]);
 
         \App\Models\Category::factory(5)->create();
