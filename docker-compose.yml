@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  rss:
+    container_name: rss
+    build:
+      args:
+        user: user
+        uid: 1000
+      context: ./docker
+      dockerfile: Dockerfile
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+
+  nginx:
+    container_name: rss_nginx
+    image: nginx:stable-alpine
+    ports:
+      - "8000:80"
+    volumes:
+      - ./docker/nginx:/etc/nginx/conf.d
+      - .:/var/www
+  
+  db:
+    image: postgres:14.6
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    volumes:
+      - ./docker/db:/var/lib/postgresql/data
+    
+  node:
+    container_name: rss_node
+    image: node:lts
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - "5173:5173"
+    command: sh -c "npm install && npm run dev"

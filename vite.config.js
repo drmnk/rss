@@ -8,4 +8,11 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    // Чтобы vite работал в сети и не бузил
+    server: {
+        host: "0.0.0.0",
+        hmr: {
+            host: "localhost",
+        },
+    },
 });
