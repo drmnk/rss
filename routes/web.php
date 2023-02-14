@@ -19,5 +19,5 @@ Route::get('/', [PostsController::class, 'index']);
 Route::get('/posts/{category}', [PostsController::class, 'indexCategory'])
     ->name('posts.category');
 
-Route::get('/posts/{category}/{id}-{slug}', [PostsController::class, 'show'])
+Route::get('/posts/{category}/{id}/{slug}', [PostsController::class, 'show'])
     ->name('posts.category.show');

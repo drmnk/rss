@@ -16,20 +16,20 @@ class PostsController extends Controller
         return view('index', compact('categories', 'posts'));
     }
 
-    public function indexCategory($categorySlug)
+    public function indexCategory(string $categorySlug)
     {
         $categories = Category::all();
-        $currentCategory = Category::where('slug', $categorySlug)->first();
+        $currentCategory = Category::where('slug', $categorySlug)->firstOrFail();
         $posts = $currentCategory->posts()->with('category')->get();
 
         return view('index', compact('categories', 'currentCategory', 'posts'));
     }
 
-    public function show($categorySlug, $id)
+    public function show(string $categorySlug, int $id)
     {
         $categories = Category::all();
-        $currentCategory = Category::where('slug', $categorySlug)->first();
-        $post = Post::withoutGlobalScope(PostNoBodyScope::class)->find($id);
+        $currentCategory = Category::where('slug', $categorySlug)->firstOrFail();
+        $post = Post::withoutGlobalScope(PostNoBodyScope::class)->findOrFail($id);
 
         return view('post', compact('categories', 'currentCategory', 'post'));
     }
