@@ -15,6 +15,7 @@ git clone https://github.com/drmnk/rss.git
 cd rss
 cp .env.example .env
 docker compose up
+docker compose exec composer install
 docker compose exec rss php artisan key:generate
 docker compose exec rss php artisan migrate
 docker compose exec rss php artisan db:seed
