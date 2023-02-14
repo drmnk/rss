@@ -18,7 +18,7 @@ class PostsController extends Controller
     public function indexCategory($categorySlug)
     {
         $categories = Category::all();
-        $currentCategory = Category::where('slug', $categorySlug)->with('posts')->first();
+        $currentCategory = Category::where('slug', $categorySlug)->first();
         $posts = $currentCategory->posts()->get()->map(function ($post) use ($currentCategory) {
             $post->category = $currentCategory;
 
@@ -26,5 +26,11 @@ class PostsController extends Controller
         });
 
         return view('index', compact('categories', 'currentCategory', 'posts'));
+    }
+
+    public function show($categorySlug, $id)
+    {
+        $categories = Category::all();
+        $currentCategory = Category::where('slug', $categorySlug)->first();
     }
 }
