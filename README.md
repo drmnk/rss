@@ -19,6 +19,7 @@ docker compose exec rss composer install
 docker compose exec rss php artisan key:generate
 docker compose exec rss php artisan migrate
 docker compose exec rss php artisan db:seed
+# Приложение будет доступно по дефолту на http://localhost:8000
 ```
 
 # Замечания

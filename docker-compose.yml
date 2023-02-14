@@ -23,7 +23,7 @@ services:
       - .:/var/www
   
   rss_db:
-    container_name: rss_sb
+    container_name: rss_db
     image: postgres:14.6
     ports:
       - "5432:5432"
