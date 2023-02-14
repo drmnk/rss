@@ -21,7 +21,11 @@ return new class extends Migration
             // идёт до ката. Пусть будет before_cut
             $table->string('before_cut', 100);
             $table->text('body');
-            $table->foreignId('category_id');
+            /*
+                Наверное, тут лучше ограничение на удаление непустой категории
+                Кому понравится, что все новости вдруг пропадут
+            */
+            $table->foreignId('category_id')->constrained()->onDelete('restrict');
             $table->timestamps();
         });
     }
