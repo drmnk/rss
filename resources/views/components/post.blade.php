@@ -1,5 +1,5 @@
   <!-- POST -->
-  <a href="{{ route('posts.category.post', [$post->category->slug, $post->id, $post->slug]) }}">
+  <a href="{{ route('posts.category.show', [$post->category->slug, $post->id, $post->slug]) }}">
       <div class="shadow-md rounded-xl group bg-white">
           <!-- Title -->
           <div class="p-2 bg-blue-200 font-medium rounded-t-xl group-hover:bg-amber-200 ">
