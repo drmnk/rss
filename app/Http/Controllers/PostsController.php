@@ -20,19 +20,7 @@ class PostsController extends Controller
     {
         $categories = Category::all();
         $currentCategory = Category::where('slug', $categorySlug)->first();
-        $posts = $currentCategory->posts()->get()->map(function ($post) use ($currentCategory) {
-            /*
-                Для корректного отображения в одном и том же виде, нам нужно,
-                чтобы у поста была его родительская категория
-                Не то чтобы этот map обязателен, и мы легко могли бы получить посты
-                с их родительской категорией как
-                $posts = $currentCategory->posts()->with('category')->get();
-                Но это позволит нам сэкономить одно обращение к БД
-            */
-            $post->category = $currentCategory;
-
-            return $post;
-        });
+        $posts = $currentCategory->posts()->with('category')->get();
 
         return view('index', compact('categories', 'currentCategory', 'posts'));
     }
