@@ -22,7 +22,8 @@ services:
       - ./docker/nginx:/etc/nginx/conf.d
       - .:/var/www
   
-  rss-db:
+  rss_db:
+    container_name: rss_sb
     image: postgres:14.6
     ports:
       - "5432:5432"
