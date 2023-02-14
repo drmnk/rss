@@ -15,7 +15,7 @@
           <div class="flex justify-between text-xs text-gray-500 p-2">
               <div>
                   {{ $post->updated_at }}</div>
-              <div>{{ $post->category->name }}</div>
+              <div>{{ $post->category->emoji }} {{ $post->category->name }}</div>
           </div>
       </div>
   </a>
